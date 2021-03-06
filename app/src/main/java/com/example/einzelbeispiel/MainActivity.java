@@ -9,9 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     Button button;
+    Button berechnen;
     EditText matrikelnummer;
     TextView ausgabe;
 
@@ -21,27 +21,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         button = findViewById(R.id.button);
+        berechnen = findViewById(R.id.berechnen);
         matrikelnummer = findViewById(R.id.matrikelnummer);
         ausgabe = findViewById(R.id.ausgabe);
 
-        button.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        int x=0;
-        String [] s = matrikelnummer.getText().toString().split("(?!^)");
-        for(int i=0;i<s.length;i++){
-            if(i%2==0){
-                x=x+Integer.parseInt(s[i]);
-            }else{
-                x=x-Integer.parseInt(s[i]);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TCPClient tcpClient = new TCPClient(matrikelnummer.getText().toString());
+                tcpClient.start();
+                try {
+                    tcpClient.join();
+                }catch (Exception e){
+                    e.getStackTrace();
+                }
+                ausgabe.setText(tcpClient.returnModifiedSentence());
             }
-        }
-        if(x%2==0){
-            ausgabe.setText(x+": ist gerade!");
-        } else {
-            ausgabe.setText(x+": ist ungerade!");
-        }
+        });
+        berechnen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int x=0;
+                String [] s = matrikelnummer.getText().toString().split("(?!^)");
+                for(int i=0;i<s.length;i++){
+                    if(i%2==0){
+                        x=x+Integer.parseInt(s[i]);
+                    }else{
+                        x=x-Integer.parseInt(s[i]);
+                    }
+                }
+                if(x%2==0){
+                    ausgabe.setText("Die alternierende Quersumme deiner Matrikelnummer ist " +x+". "+'\n'+ "Diese Zahl ist gerade!");
+                } else {
+                    ausgabe.setText("Die alternierende Quersumme deiner Matrikelnummer ist " +x+". "+'\n'+ "Diese Zahl ist ungerade!");
+                }
+            }
+        });
     }
 }

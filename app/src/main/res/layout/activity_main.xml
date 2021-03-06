@@ -20,24 +20,25 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginLeft="141dp"
-        android:layout_marginTop="373dp"
-        android:layout_marginEnd="141dp"
-        android:layout_marginRight="141dp"
-        android:layout_marginBottom="123dp"
+        android:layout_width="165dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginLeft="123dp"
+        android:layout_marginTop="225dp"
+        android:layout_marginEnd="123dp"
+        android:layout_marginRight="123dp"
+        android:layout_marginBottom="54dp"
         android:text="@string/abschicken"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/berechnen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <EditText
         android:id="@+id/matrikelnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginStart="101dp"
         android:layout_marginLeft="101dp"
         android:layout_marginTop="40dp"
@@ -57,18 +58,36 @@
 
     <TextView
         android:id="@+id/ausgabe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="365dp"
+        android:layout_height="71dp"
+        android:gravity="center"
         android:layout_marginStart="143dp"
         android:layout_marginLeft="143dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="144dp"
         android:layout_marginRight="144dp"
         android:layout_marginBottom="185dp"
         android:text="@string/antwort_vom_server"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matrikelnummer" />
+        app:layout_constraintTop_toBottomOf="@+id/matrikelnummer"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/berechnen"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="141dp"
+        android:layout_marginLeft="141dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="141dp"
+        android:layout_marginRight="141dp"
+        android:text="Berechnen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
