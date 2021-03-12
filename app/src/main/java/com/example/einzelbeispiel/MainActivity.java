@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
+    Button abschicken;
     Button berechnen;
     EditText matrikelnummer;
     TextView ausgabe;
@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.button);
+        abschicken = findViewById(R.id.abschicken);
         berechnen = findViewById(R.id.berechnen);
         matrikelnummer = findViewById(R.id.matrikelnummer);
         ausgabe = findViewById(R.id.ausgabe);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        abschicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TCPClient tcpClient = new TCPClient(matrikelnummer.getText().toString());

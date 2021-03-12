@@ -22,7 +22,6 @@ public class TCPClient extends Thread{
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             outToServer.writeBytes(userInput+'\n');
             modifiedSentence = inFromServer.readLine();
-            System.out.println("Vom Server erhalten: " + modifiedSentence);
             clientSocket.close();
         } catch (Exception e){
             e.getStackTrace();
