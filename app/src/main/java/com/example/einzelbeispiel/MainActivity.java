@@ -41,19 +41,27 @@ public class MainActivity extends AppCompatActivity {
         berechnen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int x=0;
-                String [] s = matrikelnummer.getText().toString().split("(?!^)");
-                for(int i=0;i<s.length;i++){
-                    if(i%2==0){
-                        x=x+Integer.parseInt(s[i]);
-                    }else{
-                        x=x-Integer.parseInt(s[i]);
+                if(!matrikelnummer.getText().toString().equals("")){
+                    if(matrikelnummer.getText().toString().length()<7||matrikelnummer.getText().toString().length()>9){
+                        ausgabe.setText("Bitte gib eine gültige Matrikelnummer ein!");
+                    } else{
+                        int x=0;
+                        String [] s = matrikelnummer.getText().toString().split("(?!^)");
+                        for(int i=0;i<s.length;i++){
+                            if(i%2==0){
+                                x=x+Integer.parseInt(s[i]);
+                            }else{
+                                x=x-Integer.parseInt(s[i]);
+                            }
+                        }
+                        if(x%2==0){
+                            ausgabe.setText("Die alternierende Quersumme deiner Matrikelnummer ist " +x+". "+'\n'+ "Diese Zahl ist gerade!");
+                        } else {
+                            ausgabe.setText("Die alternierende Quersumme deiner Matrikelnummer ist " +x+". "+'\n'+ "Diese Zahl ist ungerade!");
+                        }
                     }
-                }
-                if(x%2==0){
-                    ausgabe.setText("Die alternierende Quersumme deiner Matrikelnummer ist " +x+". "+'\n'+ "Diese Zahl ist gerade!");
                 } else {
-                    ausgabe.setText("Die alternierende Quersumme deiner Matrikelnummer ist " +x+". "+'\n'+ "Diese Zahl ist ungerade!");
+                    ausgabe.setText("Bitte gib zuerst deine Matrikelnummer ein!");
                 }
             }
         });
